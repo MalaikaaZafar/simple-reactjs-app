@@ -21,7 +21,7 @@ pipeline {
                 stage('Build Docker Image') {
                     steps {
                         script {
-                            sh 'docker build -t my-image:${env.BUILD_ID} .'
+                            sh 'docker build -t myapp.'
                         }
                     }
                 }
@@ -29,7 +29,7 @@ pipeline {
                 stage('Run Docker Image') {
                     steps {
                         script {
-                            sh 'docker run -p 3000:3000 my-image:${env.BUILD_ID}'
+                            sh 'docker run -p 3000:3000 myapp'
                         }
                     }
                 }
@@ -38,7 +38,7 @@ pipeline {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                             sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
-                            sh 'docker push my-image:${env.BUILD_ID}'
+                            sh 'docker push myapp'
                         }
                     }
                 }
