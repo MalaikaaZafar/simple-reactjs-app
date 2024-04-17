@@ -10,7 +10,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                call npm install grunt
             }
         }
 
