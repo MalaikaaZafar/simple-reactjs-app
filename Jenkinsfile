@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/aditya-sridhar/simple-reactjs-app'
+                git 'https://github.com/MalaikaaZafar/simple-reactjs-app.git'
             }
         }
 
