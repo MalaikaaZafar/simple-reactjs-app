@@ -3,7 +3,7 @@ pipeline {
 
      tools {
         nodejs 'NodeJSInstall'
-        dockertool 'dockerInstall'
+        dockerTool 'dockerInstall'
     }
     stages {
         stage('Checkout') {
