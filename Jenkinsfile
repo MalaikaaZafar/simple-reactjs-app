@@ -21,24 +21,24 @@ pipeline {
                 stage('Build Docker Image') {
                     steps {
                         script {
-                            sh 'docker build -t my-image:%BUILD_ID% .'
+                            sh 'docker build -t my-image:${env.BUILD_ID} .'
                         }
                     }
                 }
-        
+
                 stage('Run Docker Image') {
                     steps {
                         script {
-                            sh 'docker run -p 3000:3000 my-image:%BUILD_ID%'
+                            sh 'docker run -p 3000:3000 my-image:${env.BUILD_ID}'
                         }
                     }
                 }
-        
+
                 stage('Push Docker Image') {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                            sh 'docker login -u %DOCKER_USER% -p %DOCKER_PASS% https://registry.hub.docker.com'
-                            sh 'docker push my-image:%BUILD_ID%'
+                            sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                            sh 'docker push my-image:${env.BUILD_ID}'
                         }
                     }
                 }
