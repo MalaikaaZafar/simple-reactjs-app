@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+     tools {
+        nodejs 'NodeJSInstall'
+    }
     stages {
         stage('Checkout') {
             steps {
