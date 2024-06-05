@@ -1,12 +1,7 @@
 pipeline {
     agent any
-
-     tools {
-        nodejs 'NodeJSInstall'
-        dockerTool 'dockerInstall'
-    }
     stages {
-        stage('Checkout') {
+        stage('CheckoutApp') {
             steps {
                 git 'https://github.com/MalaikaaZafar/simple-reactjs-app.git'
             }
@@ -27,7 +22,7 @@ pipeline {
                 }
 
                 stage('Run Docker Image') {
-                    steps {
+                    steps { 
                         script {
                             bat 'docker run -p 3000:3000 myapp'
                         }
